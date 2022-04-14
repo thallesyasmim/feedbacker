@@ -2,7 +2,7 @@ const colors = require('tailwindcss/colors')
 const palette = require('./src/assets/palette')
 
 module.exports = {
-  content: ['./src/**/*.vue'],
+  content: ['./public/**/*.html', './src/**/*.vue'],
   presets: [],
   darkMode: 'media', // or 'class'
   theme: {
