@@ -7565,6 +7565,11 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
+pico-emitter@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/pico-emitter/-/pico-emitter-1.1.0.tgz#798ca0c83b0f54c806995b6549b105c21924db9b"
+  integrity sha512-e07J8HpeGX5KtiFzAbsN6T4yN+BP1ovMgLfEVUUEbfEAsu2+PvYVE8ur50ZPbeP4htmrTomYbv71RBwbhUcHTw==
+
 picocolors@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-0.2.1.tgz#570670f793646851d1ba135996962abad587859f"
