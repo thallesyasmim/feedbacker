@@ -11,7 +11,10 @@
             Criar uma conta
           </button>
 
-          <button class="px-6 py-2 font-bold bg-white rounded-full text-brand-main">
+          <button
+            class="px-6 py-2 font-bold bg-white rounded-full text-brand-main"
+            @click="handleEmitLogin"
+          >
             Entrar
           </button>
         </div>
@@ -37,7 +40,17 @@
 </template>
 
 <script setup lang="ts">
+import { defineEmits } from 'vue'
 
+interface IEmits {
+  (e: 'login'): void
+}
+
+const emit = defineEmits<IEmits>()
+
+function handleEmitLogin () {
+  emit('login')
+}
 </script>
 
 <style scoped lang="postcss">
