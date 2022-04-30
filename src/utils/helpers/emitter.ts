@@ -1,6 +1,8 @@
 import PicoEmitter from 'pico-emitter'
 import { Callback } from '@/types'
 
+const emitter = new PicoEmitter()
+
 export class Emitter {
   private emitter: PicoEmitter
 
@@ -30,7 +32,7 @@ export class EmitterSingleton {
 
   getInstance () {
     if (!this.emitter) {
-      this.emitter = new Emitter(new PicoEmitter())
+      this.emitter = new Emitter(emitter)
     }
 
     return this.emitter
