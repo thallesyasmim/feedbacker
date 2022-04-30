@@ -9,6 +9,8 @@ interface UseModalDTO {
   off: (callback: Callback) => void
 }
 
+export const DEFAULT_WIDTH = 'w-3/4 lg:w-1/3'
+
 export function useModal (emitter: Emitter): UseModalDTO {
   function open (payload = {}) {
     emitter.emit(MODAL_TOGGLE_EVENT_NAME, { status: true, ...payload })
