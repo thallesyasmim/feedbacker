@@ -1,5 +1,5 @@
 import { Callback } from '@/types'
-import { MODAL_TOGGLE_EVENT_NAME } from '@/types/events'
+import { ModalTogglePayload, MODAL_TOGGLE_EVENT_NAME } from '@/types/events'
 import { Emitter } from '@/utils/helpers/emitter'
 
 interface UseModalDTO {
@@ -12,12 +12,12 @@ interface UseModalDTO {
 export const DEFAULT_WIDTH = 'w-3/4 lg:w-1/3'
 
 export function useModal (emitter: Emitter): UseModalDTO {
-  function open (payload = {}) {
-    emitter.emit(MODAL_TOGGLE_EVENT_NAME, { status: true, ...payload })
+  function open (payload: ModalTogglePayload) {
+    emitter.emit(MODAL_TOGGLE_EVENT_NAME, { ...payload, status: true })
   }
 
-  function close (payload = {}) {
-    emitter.emit(MODAL_TOGGLE_EVENT_NAME, { status: false, ...payload })
+  function close (payload: ModalTogglePayload) {
+    emitter.emit(MODAL_TOGGLE_EVENT_NAME, { ...payload, status: false })
   }
 
   function listen (callback: Callback) {
