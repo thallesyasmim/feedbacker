@@ -1,6 +1,5 @@
 import { TinyEmitter } from 'tiny-emitter'
-
-type Callback = (...args: any[]) => void
+import { Callback } from '@/types'
 
 export class Emitter {
   private emitter: TinyEmitter
