@@ -1,10 +1,10 @@
-import { TinyEmitter } from 'tiny-emitter'
+import PicoEmitter from 'pico-emitter'
 import { Callback } from '@/types'
 
 export class Emitter {
-  private emitter: TinyEmitter
+  private emitter: PicoEmitter
 
-  constructor (emitter: TinyEmitter) {
+  constructor (emitter: PicoEmitter) {
     this.emitter = emitter
   }
 
@@ -12,8 +12,8 @@ export class Emitter {
     this.emitter.on(event, callback, ctx)
   }
 
-  once (event: string, callback: Callback, ctx?: any) {
-    this.emitter.once(event, callback, ctx)
+  once (event: string, callback: Callback) {
+    this.emitter.once(event, callback)
   }
 
   emit (event: string, ...args: any[]) {
@@ -30,7 +30,7 @@ export class EmitterSingleton {
 
   getInstance () {
     if (!this.emitter) {
-      this.emitter = new Emitter(new TinyEmitter())
+      this.emitter = new Emitter(new PicoEmitter())
     }
 
     return this.emitter
