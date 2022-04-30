@@ -3,8 +3,12 @@
     <div
       v-if="state.isActive"
       class="fixed top-0 left-0 z-50 items-center justify-center w-full h-full bg-black bg-opacity-50"
+      @click="handleModalToggle({ status: false })"
     >
-      <div class="fixed mx-10">
+      <div
+        class="fixed mx-10"
+        :class="DEFAULT_WIDTH"
+      >
         <div class="flex flex-col overflow-hidden bg-white rounded-lg animate__animated animate__fadeInDown animate__faster">
           <div class="flex flex-col px-12 py-10 bg-white">
             <component :is="state.component" />
@@ -51,9 +55,9 @@ function handleModalToggle ({ status, ...payload }: ModalTogglePayload) {
     state.width = DEFAULT_WIDTH
     return
   }
-
   state.component = payload.component
   state.props = payload.props
   state.width = payload.width ?? DEFAULT_WIDTH
+  state.isActive = status
 }
 </script>
