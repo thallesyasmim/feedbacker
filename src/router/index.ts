@@ -8,32 +8,32 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
   },
   {
     path: '/feedbacks',
     name: 'Feedbacks',
     component: Feedbacks,
     meta: {
-      hasAuth: true
-    }
+      hasAuth: true,
+    },
   },
   {
     path: '/credentials',
     name: 'Credentials',
-    component: Credentials
+    component: Credentials,
   },
   {
     path: '/:pathMatch(.*)*',
     redirect: {
-      name: 'Home'
-    }
-  }
+      name: 'Home',
+    },
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory('/'),
-  routes
+  routes,
 })
 
 export default router

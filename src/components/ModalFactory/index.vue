@@ -5,12 +5,10 @@
       class="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50"
       @click="handleModalToggle({ status: false })"
     >
-      <div
-        class="fixed mx-10"
-        :class="DEFAULT_WIDTH"
-        @click.stop
-      >
-        <div class="flex flex-col overflow-hidden bg-white rounded-lg animate__animated animate__fadeInDown">
+      <div class="fixed mx-10" :class="DEFAULT_WIDTH" @click.stop>
+        <div
+          class="flex flex-col overflow-hidden bg-white rounded-lg animate__animated animate__fadeInDown"
+        >
           <div class="flex flex-col px-12 py-10 bg-white">
             <component :is="state.component" />
           </div>
@@ -37,7 +35,7 @@ const modal = useModal(new EmitterSingleton().getInstance())
 const state = reactive<IState>({
   isActive: false,
   component: {},
-  width: DEFAULT_WIDTH
+  width: DEFAULT_WIDTH,
 })
 
 onMounted(() => {
@@ -48,7 +46,9 @@ onBeforeUnmount(() => {
   modal.off(handleModalToggle)
 })
 
-function handleModalToggle (payloads: ModalTogglePayload[] | ModalTogglePayload) {
+function handleModalToggle(
+  payloads: ModalTogglePayload[] | ModalTogglePayload
+) {
   let payload = payloads
 
   if (Array.isArray(payload)) {

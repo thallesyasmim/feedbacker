@@ -2,7 +2,9 @@
   <custom-header @login="handleLogin" />
   <contact />
   <footer class="flex justify-center py-10 bg-brand-gray">
-    <p class="font-medium text-center text-gray-800">feedbacker &copy; {{ currentYear }}</p>
+    <p class="font-medium text-center text-gray-800">
+      feedbacker &copy; {{ currentYear }}
+    </p>
   </footer>
 </template>
 
@@ -24,14 +26,14 @@ onMounted(() => {
 
   if (token) {
     router.push({
-      name: 'Feedbacks'
+      name: 'Feedbacks',
     })
   }
 })
 
-function handleLogin () {
+function handleLogin() {
   modal.open({
-    component: ModalLogin
+    component: ModalLogin,
   })
 }
 </script>

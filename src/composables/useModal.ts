@@ -11,20 +11,20 @@ interface UseModalDTO {
 
 export const DEFAULT_WIDTH = 'w-3/4 lg:w-1/3'
 
-export function useModal (emitter: Emitter): UseModalDTO {
-  function open (payload: ModalTogglePayload) {
+export function useModal(emitter: Emitter): UseModalDTO {
+  function open(payload: ModalTogglePayload) {
     emitter.emit(MODAL_TOGGLE_EVENT_NAME, { ...payload, status: true })
   }
 
-  function close (payload: ModalTogglePayload) {
+  function close(payload: ModalTogglePayload) {
     emitter.emit(MODAL_TOGGLE_EVENT_NAME, { ...payload, status: false })
   }
 
-  function listen (callback: Callback) {
+  function listen(callback: Callback) {
     emitter.on(MODAL_TOGGLE_EVENT_NAME, callback)
   }
 
-  function off (callback: Callback) {
+  function off(callback: Callback) {
     emitter.off(MODAL_TOGGLE_EVENT_NAME, callback)
   }
 
@@ -32,6 +32,6 @@ export function useModal (emitter: Emitter): UseModalDTO {
     open,
     close,
     listen,
-    off
+    off,
   }
 }
