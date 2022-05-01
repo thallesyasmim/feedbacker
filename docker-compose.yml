@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  feedback-dashboard:
+    container_name: feedback-dashboard
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - '8081:8080'
