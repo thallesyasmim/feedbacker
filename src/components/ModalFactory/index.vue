@@ -21,11 +21,10 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, onMounted, onBeforeUnmount, defineAsyncComponent, Component } from 'vue'
+import { reactive, onMounted, onBeforeUnmount, Component } from 'vue'
 import { useModal, DEFAULT_WIDTH } from '@/composables/useModal'
 import { EmitterSingleton } from '@/utils/helpers/emitter'
 import type { ModalTogglePayload } from '@/types/events'
-const ModalLogin = defineAsyncComponent(() => import('@/components/ModalLogin/index.vue'))
 
 interface IState {
   isActive: boolean
