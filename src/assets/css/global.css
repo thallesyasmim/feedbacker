@@ -7,3 +7,9 @@ body,
     width: 100%;
     height: 100%;
 }
+
+.animate__animated {
+    animation-duration: 250ms !important;
+    transition-duration: 250ms !important;
+}
+  
