@@ -1,5 +1,5 @@
 <template>
-  <custom-header @login="handleLogin" />
+  <custom-header @login="handleLogin" @create-account="handleCreateAccount" />
   <contact />
   <footer class="flex justify-center py-10 bg-brand-gray">
     <p class="font-medium text-center text-gray-800">
@@ -16,6 +16,7 @@ import { EmitterSingleton } from '@/utils/helpers/emitter'
 import Contact from './Contact.vue'
 import CustomHeader from './CustomHeader.vue'
 import ModalLogin from '@/components/ModalLogin/index.vue'
+import ModalCreateAccount from '@/components/ModalCreateAccount/index.vue'
 
 const router = useRouter()
 const modal = useModal(new EmitterSingleton().getInstance())
@@ -34,6 +35,12 @@ onMounted(() => {
 function handleLogin() {
   modal.open({
     component: ModalLogin,
+  })
+}
+
+function handleCreateAccount() {
+  modal.open({
+    component: ModalCreateAccount,
   })
 }
 </script>
