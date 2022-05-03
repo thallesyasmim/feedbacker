@@ -13,6 +13,7 @@
         <div class="flex">
           <button
             class="px-6 py-2 font-bold bg-transparent rounded-full text-white"
+            @click="handleEmitCreateAccount"
           >
             Criar uma conta
           </button>
@@ -39,6 +40,7 @@
         <div class="mt-10">
           <button
             class="px-6 py-2 font-bold bg-white rounded-full text-brand-main"
+            @click="handleEmitCreateAccount"
           >
             Crie uma conta grátis
           </button>
@@ -53,12 +55,17 @@ import { defineEmits } from 'vue'
 
 interface IEmits {
   (e: 'login'): void
+  (e: 'create-account'): void
 }
 
 const emit = defineEmits<IEmits>()
 
 function handleEmitLogin() {
   emit('login')
+}
+
+function handleEmitCreateAccount() {
+  emit('create-account')
 }
 </script>
 
