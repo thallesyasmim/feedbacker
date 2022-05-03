@@ -4,7 +4,7 @@ import { Emitter } from '@/utils/helpers/emitter'
 
 interface UseModalDTO {
   open: (payload: any) => void
-  close: (payload: any) => void
+  close: () => void
   listen: (callback: Callback) => void
   off: (callback: Callback) => void
 }
@@ -16,8 +16,8 @@ export function useModal(emitter: Emitter): UseModalDTO {
     emitter.emit(MODAL_TOGGLE_EVENT_NAME, { ...payload, status: true })
   }
 
-  function close(payload: ModalTogglePayload) {
-    emitter.emit(MODAL_TOGGLE_EVENT_NAME, { ...payload, status: false })
+  function close() {
+    emitter.emit(MODAL_TOGGLE_EVENT_NAME, { status: false })
   }
 
   function listen(callback: Callback) {
