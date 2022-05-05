@@ -8,6 +8,10 @@ body,
     height: 100%;
 }
 
+input {
+    outline-color: #000;
+}
+
 .animate__animated {
     animation-duration: 250ms !important;
     transition-duration: 250ms !important;
