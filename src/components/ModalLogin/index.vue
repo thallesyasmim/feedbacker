@@ -21,13 +21,7 @@
           placeholder="jane.doe@gmail.com"
           @blur="v$.email.$touch"
         />
-        <div
-          class="input-errors"
-          v-for="{ id, message } of emailErrors"
-          :key="id"
-        >
-          <span class="block font-medium text-brand-danger">{{ message }}</span>
-        </div>
+        <ErrorsMessage :errors="emailErrors" />
       </label>
 
       <label for="password" class="block mt-9">
@@ -40,13 +34,7 @@
           placeholder="****"
           @blur="v$.password.$touch"
         />
-        <div
-          class="input-errors"
-          v-for="{ id, message } of passwordErrors"
-          :key="id"
-        >
-          <span class="block font-medium text-brand-danger">{{ message }}</span>
-        </div>
+        <ErrorsMessage :errors="passwordErrors" />
       </label>
 
       <button
@@ -68,6 +56,8 @@ import { reactive, computed } from 'vue'
 import { useModal, useLogin } from '@/composables/index'
 import { useVuelidate } from '@vuelidate/core'
 import { EmitterSingleton } from '@/utils/helpers/emitter'
+import { ErrorMessage } from '@/types/index'
+import ErrorsMessage from '@/components/ErrorsMessage/index.vue'
 
 const modal = useModal(new EmitterSingleton().getInstance())
 const { handleSubmit, validationRules } = useLogin()
@@ -80,17 +70,19 @@ const state = reactive({
 
 const v$ = useVuelidate(validationRules, state)
 
-const emailErrors = computed(() =>
-  v$.value.email.$errors.map(({ $uid, $message }) => ({
-    id: $uid,
-    message: $message,
-  }))
+const emailErrors = computed(
+  () =>
+    v$.value.email.$errors.map(({ $uid, $message }) => ({
+      id: $uid,
+      message: $message,
+    })) as ErrorMessage[]
 )
-const passwordErrors = computed(() =>
-  v$.value.password.$errors.map(({ $uid, $message }) => ({
-    id: $uid,
-    message: $message,
-  }))
+const passwordErrors = computed(
+  () =>
+    v$.value.password.$errors.map(({ $uid, $message }) => ({
+      id: $uid,
+      message: $message,
+    })) as ErrorMessage[]
 )
 
 function handleCloseModal() {
