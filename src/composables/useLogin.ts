@@ -1,4 +1,4 @@
-import { email, helpers, minLength, required } from '@vuelidate/validators'
+import { emailValidator, passwordValidator } from '@/utils/helpers/validators'
 
 interface UseLoginDTO {
   validationRules: any
@@ -7,17 +7,8 @@ interface UseLoginDTO {
 
 export function useLogin(): UseLoginDTO {
   const validationRules = {
-    email: {
-      required: helpers.withMessage('O e-mail é requerido', required),
-      email: helpers.withMessage('O e-mail é inválido', email),
-    },
-    password: {
-      required: helpers.withMessage('A senha é requerida', required),
-      minLength: helpers.withMessage(
-        'A senha deve ter pelo menos 3 caracteres',
-        minLength(3)
-      ),
-    },
+    email: emailValidator(),
+    password: passwordValidator(),
   }
 
   async function handleSubmit() {
