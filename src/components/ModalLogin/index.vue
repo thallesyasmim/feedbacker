@@ -14,35 +14,39 @@
       <label for="email" class="block">
         <span class="text-lg font-medium text-black">E-mail</span>
         <input
-          v-model="state.email.value"
+          v-model="state.email"
           type="email"
           name="email"
           class="block w-full px-4 py-3 mt-1 text-lg bg-gray-100 border-2 border-transparent rounded"
           placeholder="jane.doe@gmail.com"
+          @blur="v$.email.$touch"
         />
-        <span
-          v-if="!!state.email.errorMessage"
-          class="block font-medium text-brand-danger"
+        <div
+          class="input-errors"
+          v-for="{ id, message } of emailErrors"
+          :key="id"
         >
-          {{ state.email.errorMessage }}
-        </span>
+          <span class="block font-medium text-brand-danger">{{ message }}</span>
+        </div>
       </label>
 
       <label for="password" class="block mt-9">
         <span class="text-lg font-medium text-black">Senha</span>
         <input
-          v-model="state.password.value"
+          v-model="state.password"
           type="password"
           name="password"
           class="block w-full px-4 py-3 mt-1 text-lg bg-gray-100 border-2 border-transparent rounded"
           placeholder="****"
+          @blur="v$.password.$touch"
         />
-        <span
-          v-if="!!state.password.errorMessage"
-          class="block font-medium text-brand-danger"
+        <div
+          class="input-errors"
+          v-for="{ id, message } of passwordErrors"
+          :key="id"
         >
-          {{ state.password.errorMessage }}
-        </span>
+          <span class="block font-medium text-brand-danger">{{ message }}</span>
+        </div>
       </label>
 
       <button
@@ -60,29 +64,36 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
-import { useModal } from '@/composables/useModal'
+import { reactive, computed } from 'vue'
+import { useModal, useLogin } from '@/composables/index'
+import { useVuelidate } from '@vuelidate/core'
 import { EmitterSingleton } from '@/utils/helpers/emitter'
 
 const modal = useModal(new EmitterSingleton().getInstance())
+const { handleSubmit, validationRules } = useLogin()
 const state = reactive({
   hasErrors: false,
   isLoading: false,
-  email: {
-    value: '',
-    errorMessage: '',
-  },
-  password: {
-    value: '',
-    errorMessage: '',
-  },
+  email: '',
+  password: '',
 })
+
+const v$ = useVuelidate(validationRules, state)
+
+const emailErrors = computed(() =>
+  v$.value.email.$errors.map(({ $uid, $message }) => ({
+    id: $uid,
+    message: $message,
+  }))
+)
+const passwordErrors = computed(() =>
+  v$.value.password.$errors.map(({ $uid, $message }) => ({
+    id: $uid,
+    message: $message,
+  }))
+)
 
 function handleCloseModal() {
   modal.close()
-}
-
-function handleSubmit() {
-  return ''
 }
 </script>
