@@ -1,6 +1,7 @@
 import {
   AuthRepository,
   AuthRepositoryFactory,
+  LoginDTO,
 } from '@/infra/repositories/authRepository'
 
 export class AuthUseCase {
@@ -10,7 +11,7 @@ export class AuthUseCase {
     this.authRepository = authRepository
   }
 
-  async login(email: string, password: string): Promise<string> {
+  async login(email: string, password: string): Promise<LoginDTO> {
     const token = await this.authRepository.login(email, password)
 
     return token
