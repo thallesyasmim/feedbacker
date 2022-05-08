@@ -18,51 +18,66 @@
   </teleport>
 </template>
 
-<script setup lang="ts">
-import { reactive, onMounted, onBeforeUnmount, Component } from 'vue'
+<script lang="ts">
+import { reactive, onMounted, onBeforeUnmount } from 'vue'
 import { useModal, DEFAULT_WIDTH } from '@/composables/useModal'
 import { EmitterSingleton } from '@/utils/helpers/emitter'
 import type { ModalTogglePayload } from '@/types/events'
+import ModalLogin from '@/components/ModalLogin/index.vue'
+import ModalCreateAccount from '@/components/ModalCreateAccount/index.vue'
 
-interface IState {
-  isActive: boolean
-  component?: Component
-  width: string
-  props?: any
-}
+export default {
+  components: {
+    ModalLogin,
+    ModalCreateAccount,
+  },
+  setup() {
+    interface IState {
+      isActive: boolean
+      component?: string
+      width: string
+      props?: any
+    }
 
-const modal = useModal(new EmitterSingleton().getInstance())
-const state = reactive<IState>({
-  isActive: false,
-  component: {},
-  width: DEFAULT_WIDTH,
-})
+    const modal = useModal(new EmitterSingleton().getInstance())
+    const state = reactive<IState>({
+      isActive: false,
+      component: '',
+      width: DEFAULT_WIDTH,
+    })
 
-onMounted(() => {
-  modal.listen(handleModalToggle)
-})
+    onMounted(() => {
+      modal.listen(handleModalToggle)
+    })
 
-onBeforeUnmount(() => {
-  modal.off(handleModalToggle)
-})
+    onBeforeUnmount(() => {
+      modal.off(handleModalToggle)
+    })
 
-function handleModalToggle(
-  payloads: ModalTogglePayload[] | ModalTogglePayload
-) {
-  let payload = payloads
+    function handleModalToggle(
+      payloads: ModalTogglePayload[] | ModalTogglePayload
+    ) {
+      let payload = payloads
 
-  if (Array.isArray(payload)) {
-    payload = payload.shift() as ModalTogglePayload
-  }
-  state.isActive = payload.status
-  if (!payload.status) {
-    state.component = {}
-    state.props = {}
-    state.width = DEFAULT_WIDTH
-    return
-  }
-  state.component = payload.component
-  state.props = payload.props
-  state.width = payload.width ?? DEFAULT_WIDTH
+      if (Array.isArray(payload)) {
+        payload = payload.shift() as ModalTogglePayload
+      }
+      state.isActive = payload.status
+      if (!payload.status) {
+        state.component = ''
+        state.props = {}
+        state.width = DEFAULT_WIDTH
+        return
+      }
+      state.component = payload.component
+      state.props = payload.props
+      state.width = payload.width ?? DEFAULT_WIDTH
+    }
+
+    return {
+      state,
+      handleModalToggle,
+    }
+  },
 }
 </script>
