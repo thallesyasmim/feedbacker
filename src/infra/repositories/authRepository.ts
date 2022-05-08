@@ -1,5 +1,7 @@
-import { httpClient } from '@/utils/helpers/httpClient'
+import httpClient from '@/utils/helpers/httpClient'
 import { AxiosInstance } from 'axios'
+
+export type LoginDTO = string | null
 
 export class AuthRepository {
   private httpClient: AxiosInstance
@@ -9,15 +11,13 @@ export class AuthRepository {
     this.httpClient = httpClient
   }
 
-  async login(email: string, password: string) {
-    const {
-      data: { token },
-    } = await this.httpClient.post(this.authLoginRoute, {
+  async login(email: string, password: string): Promise<LoginDTO> {
+    const response = await this.httpClient.post(this.authLoginRoute, {
       email,
       password,
     })
 
-    return token
+    return response?.data?.token ?? null
   }
 }
 
