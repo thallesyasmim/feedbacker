@@ -53,14 +53,19 @@
 
 <script setup lang="ts">
 import { reactive, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { useModal, useLogin } from '@/composables/index'
 import { useVuelidate } from '@vuelidate/core'
 import { EmitterSingleton } from '@/utils/helpers/emitter'
 import { ErrorMessage } from '@/types/index'
 import ErrorsMessage from '@/components/ErrorsMessage/index.vue'
+import { AuthUseCaseFactory } from '@/domain/usecases/authUseCase'
 
+const router = useRouter()
 const modal = useModal(new EmitterSingleton().getInstance())
-const { handleSubmit, validationRules } = useLogin()
+const { handleLogin, validationRules } = useLogin(
+  AuthUseCaseFactory.getInstance()
+)
 const state = reactive({
   hasErrors: false,
   isLoading: false,
@@ -84,6 +89,21 @@ const passwordErrors = computed(
       message: $message,
     })) as ErrorMessage[]
 )
+
+async function handleSubmit() {
+  try {
+    state.isLoading = true
+    const token = await handleLogin(state.email, state.password)
+
+    window.localStorage.setItem('token', token)
+    router.push({ name: 'Feedbacks' })
+    modal.close()
+  } catch (error) {
+    console.error(error)
+  } finally {
+    state.isLoading = false
+  }
+}
 
 function handleCloseModal() {
   modal.close()
