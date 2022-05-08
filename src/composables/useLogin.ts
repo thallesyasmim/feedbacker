@@ -1,9 +1,10 @@
 import { AuthUseCase } from '@/domain/usecases/authUseCase'
+import { LoginDTO } from '@/infra/repositories/authRepository'
 import { emailValidator, passwordValidator } from '@/utils/helpers/validators'
 
 interface UseLoginDTO {
   validationRules: any
-  handleLogin: (email: string, password: string) => Promise<string>
+  handleLogin: (email: string, password: string) => Promise<LoginDTO>
 }
 
 export function useLogin(authUseCase: AuthUseCase): UseLoginDTO {
