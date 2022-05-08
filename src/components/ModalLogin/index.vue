@@ -95,6 +95,11 @@ async function handleSubmit() {
     state.isLoading = true
     const token = await handleLogin(state.email, state.password)
 
+    if (!token) {
+      console.log('E-mail ou senha inválidos')
+      return
+    }
+
     window.localStorage.setItem('token', token)
     router.push({ name: 'Feedbacks' })
     modal.close()
