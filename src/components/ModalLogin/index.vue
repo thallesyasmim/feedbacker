@@ -38,9 +38,10 @@
       </label>
 
       <button
-        :disabled="state.isLoading"
+        :disabled="disabledSubmitButton"
         :class="{
-          'opacity-50': state.isLoading,
+          'opacity-50': disabledSubmitButton,
+          'cursor-not-allowed': disabledSubmitButton,
         }"
         class="px-12 py-2 mt-10 text-xl font-bold text-white rounded-full bg-brand-main focus:outline transition-all duration-150"
         type="submit"
@@ -55,6 +56,7 @@
 import { reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useModal, useLogin } from '@/composables/index'
+import { useToast } from 'vue-toastification'
 import { useVuelidate } from '@vuelidate/core'
 import { EmitterSingleton } from '@/utils/helpers/emitter'
 import { ErrorMessage } from '@/types/index'
@@ -62,12 +64,12 @@ import ErrorsMessage from '@/components/ErrorsMessage/index.vue'
 import { AuthUseCaseFactory } from '@/domain/usecases/authUseCase'
 
 const router = useRouter()
+const toast = useToast()
 const modal = useModal(new EmitterSingleton().getInstance())
 const { handleLogin, validationRules } = useLogin(
   AuthUseCaseFactory.getInstance()
 )
 const state = reactive({
-  hasErrors: false,
   isLoading: false,
   email: '',
   password: '',
@@ -89,14 +91,18 @@ const passwordErrors = computed(
       message: $message,
     })) as ErrorMessage[]
 )
+const disabledSubmitButton = computed(
+  () => state.isLoading || !state.email || !state.password
+)
 
 async function handleSubmit() {
   try {
+    toast.clear()
     state.isLoading = true
     const token = await handleLogin(state.email, state.password)
 
     if (!token) {
-      console.log('E-mail ou senha inválidos')
+      toast.error('E-mail ou senha inválidos.')
       return
     }
 
@@ -104,6 +110,7 @@ async function handleSubmit() {
     router.push({ name: 'Feedbacks' })
     modal.close()
   } catch (error) {
+    toast.error('Ocorreu um erro interno, tente novamente mais tarde.')
     console.error(error)
   } finally {
     state.isLoading = false
