@@ -15,8 +15,6 @@ import { useModal } from '@/composables/useModal'
 import { EmitterSingleton } from '@/utils/helpers/emitter'
 import Contact from './Contact.vue'
 import CustomHeader from './CustomHeader.vue'
-import ModalLogin from '@/components/ModalLogin/index.vue'
-import ModalCreateAccount from '@/components/ModalCreateAccount/index.vue'
 
 const router = useRouter()
 const modal = useModal(new EmitterSingleton().getInstance())
@@ -34,13 +32,13 @@ onMounted(() => {
 
 function handleLogin() {
   modal.open({
-    component: ModalLogin,
+    component: 'ModalLogin',
   })
 }
 
 function handleCreateAccount() {
   modal.open({
-    component: ModalCreateAccount,
+    component: 'ModalCreateAccount',
   })
 }
 </script>
