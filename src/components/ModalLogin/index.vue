@@ -46,7 +46,8 @@
         class="px-12 py-2 mt-10 text-xl font-bold text-white rounded-full bg-brand-main focus:outline transition-all duration-150"
         type="submit"
       >
-        Entrar
+        <Icon v-if="state.isLoading" name="loading" class="animate-spin" />
+        <span v-else>Entrar</span>
       </button>
     </form>
   </div>
@@ -61,6 +62,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { EmitterSingleton } from '@/utils/helpers/emitter'
 import { ErrorMessage } from '@/types/index'
 import ErrorsMessage from '@/components/ErrorsMessage/index.vue'
+import Icon from '@/components/Icon/index.vue'
 import { AuthUseCaseFactory } from '@/domain/usecases/authUseCase'
 
 const router = useRouter()
