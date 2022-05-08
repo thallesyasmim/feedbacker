@@ -14,6 +14,8 @@ httpClient.interceptors.response.use(
     if (status === 0 || status === 500) {
       throw new Error(error)
     }
+
+    return error
   }
 )
 
