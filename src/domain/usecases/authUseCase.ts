@@ -1,4 +1,7 @@
-import { AuthRepository } from '@/infra/repositories/authRepository'
+import {
+  AuthRepository,
+  AuthRepositoryFactory,
+} from '@/infra/repositories/authRepository'
 
 export class AuthUseCase {
   private authRepository: AuthRepository
@@ -7,9 +10,15 @@ export class AuthUseCase {
     this.authRepository = authRepository
   }
 
-  async login(email: string, password: string) {
+  async login(email: string, password: string): Promise<string> {
     const token = await this.authRepository.login(email, password)
 
     return token
+  }
+}
+
+export class AuthUseCaseFactory {
+  static getInstance() {
+    return new AuthUseCase(AuthRepositoryFactory.getInstance())
   }
 }
