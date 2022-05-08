@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export const httpClient = axios.create({
-  baseURL: process.env.BASE_URL || 'http://localhost:3333',
+  baseURL: process.env.VUE_APP_BASE_URL || 'http://localhost:3333',
 })
