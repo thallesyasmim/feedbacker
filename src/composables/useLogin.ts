@@ -1,22 +1,23 @@
+import { AuthUseCase } from '@/domain/usecases/authUseCase'
 import { emailValidator, passwordValidator } from '@/utils/helpers/validators'
 
 interface UseLoginDTO {
   validationRules: any
-  handleSubmit: () => Promise<string>
+  handleLogin: (email: string, password: string) => Promise<string>
 }
 
-export function useLogin(): UseLoginDTO {
+export function useLogin(authUseCase: AuthUseCase): UseLoginDTO {
   const validationRules = {
     email: emailValidator(),
     password: passwordValidator(),
   }
 
-  async function handleSubmit() {
-    return ''
+  async function handleLogin(email: string, password: string) {
+    return await authUseCase.login(email, password)
   }
 
   return {
     validationRules,
-    handleSubmit,
+    handleLogin,
   }
 }
