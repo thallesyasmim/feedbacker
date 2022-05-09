@@ -1,5 +1,5 @@
 import { AuthUseCase } from '@/domain/usecases/authUseCase'
-import { LoginDTO } from '@/infra/repositories/authRepository'
+import { LoginDTO } from '@/infra/repositories'
 import { emailValidator, passwordValidator } from '@/utils/helpers/validators'
 
 interface UseLoginDTO {
