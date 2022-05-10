@@ -22,6 +22,9 @@ const routes: Array<RouteRecordRaw> = [
     path: '/credentials',
     name: 'Credentials',
     component: Credentials,
+    meta: {
+      hasAuth: true,
+    },
   },
   {
     path: '/:pathMatch(.*)*',
