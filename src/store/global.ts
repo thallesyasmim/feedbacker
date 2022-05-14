@@ -1,6 +1,10 @@
 import { reactive } from 'vue'
 
-const state = reactive({
+interface IState {
+  isLoading: boolean
+}
+
+const state = reactive<IState>({
   isLoading: false,
 })
 

@@ -1,20 +1,29 @@
+import { IUser } from '@/types'
 import { reactive } from 'vue'
 
-const state = reactive({
-  currentUser: {},
+interface IState {
+  currentUser: IUser | null
+}
+
+const state = reactive<IState>({
+  currentUser: null,
 })
 
 export default state
 
 export function cleanCurrentUser() {
-  state.currentUser = {}
+  state.currentUser = null
 }
 
-export function setCurrentUser(user) {
+export function setCurrentUser(user: IUser) {
   state.currentUser = user
 }
 
-export function setApiKey(apiKey) {
+export function setApiKey(apiKey: string) {
+  if (!state.currentUser) {
+    return
+  }
+
   const currentUser = { ...state.currentUser, apiKey }
   state.currentUser = currentUser
 }
