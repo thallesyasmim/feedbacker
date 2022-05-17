@@ -32,9 +32,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useStore } from '@/composables/useStore'
-import { StoreModules } from '@/types'
+import { StoreModules, IStoreUserModule } from '@/types'
 
-const store = useStore(StoreModules.USER)
+const store = useStore(StoreModules.USER) as IStoreUserModule
 const navigationItems = [
   {
     name: 'Credenciais',
@@ -47,6 +47,6 @@ const navigationItems = [
 ]
 
 const logoutLabel = computed(() =>
-  store.currentUser.name ? `${store.currentUser.name} (Sair)` : 'Sair'
+  store.currentUser?.name ? `${store.currentUser.name} (Sair)` : 'Sair'
 )
 </script>
