@@ -1,7 +1,7 @@
 import Store from '@/store'
-import { StoreModules } from '@/types'
+import { IUseStore, StoreModules } from '@/types'
 
-export function useStore(module: StoreModules) {
+export function useStore(module: StoreModules): IUseStore {
   if (module) {
     return Store[module]
   }
