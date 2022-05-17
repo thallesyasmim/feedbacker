@@ -8,6 +8,17 @@
       Guia de instalação e geração de suas credenciais
     </p>
   </div>
+
+  <div class="flex justify-center w-full h-full">
+    <div class="flex flex-col w-4/5 max-w-6xl py-10">
+      <h1 class="text-3xl font-black text-brand-darkgray">
+        Instalação e configuração
+      </h1>
+      <p class="mt-10 text-lg text-gray-800 font-regular">
+        Esta aqui é sua chave de api
+      </p>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
