@@ -20,6 +20,7 @@
         </li>
 
         <li
+          @click="handleLogout"
           class="px-6 py-2 mr-2 font-bold bg-white text-brand-main rounded-full cursor-pointer focus:outline-none"
         >
           {{ logoutLabel }}
@@ -31,10 +32,11 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useStore } from '@/composables/useStore'
+import { useStore, useLogout } from '@/composables'
 import { StoreModules, IStoreUserModule } from '@/types'
 
 const store = useStore(StoreModules.USER) as IStoreUserModule
+const { handleLogout } = useLogout()
 const navigationItems = [
   {
     name: 'Credenciais',
