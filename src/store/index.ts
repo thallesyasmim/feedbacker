@@ -6,3 +6,5 @@ export default readonly({
   User: UserModule,
   Global: GlobalModule,
 })
+
+export { UserModule, GlobalModule }
