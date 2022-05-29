@@ -3,7 +3,7 @@ import router from '@/router'
 import { setGlobalLoading } from '@/store/global'
 
 const httpClient = axios.create({
-  baseURL: process.env.VUE_APP_BASE_URL || 'http://localhost:3333',
+  baseURL: process.env.VUE_API_BASE_URL || 'http://localhost:3000',
 })
 
 httpClient.interceptors.request.use((config) => {
