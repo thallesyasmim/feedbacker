@@ -2,8 +2,9 @@
   <div class="flex justify-center w-full h-28 bg-brand-main">
     <header-logged />
   </div>
+
   <div class="flex flex-col items-center justify-center h-64 bg-brand-gray">
-    <h1 class="text-4xl font-black text-center text-gray-800">Credenciais</h1>
+    <h1 class="text-4xl font-black text-gray-800">Credenciais</h1>
     <p class="text-lg text-center text-gray-800 font-regular">
       Guia de instalação e geração de suas credenciais
     </p>
@@ -15,12 +16,118 @@
         Instalação e configuração
       </h1>
       <p class="mt-10 text-lg text-gray-800 font-regular">
-        Esta aqui é sua chave de api
+        Esta aqui é a sua chave de api
       </p>
+
+      <content-loader
+        v-if="Global.isLoading || state.isLoading"
+        class="rounded"
+        width="600px"
+        height="50px"
+      />
+
+      <div
+        v-else
+        class="flex py-3 pl-5 mt-2 rounded justify-between items-center bg-brand-gray w-full lg:w-1/2"
+      >
+        <span v-if="state.hasError">Erro ao carregar a apikey</span>
+        <span v-else id="apikey">{{ User.currentUser?.apiKey }}</span>
+        <div class="flex ml-20 mr-5" v-if="!state.hasError">
+          <icon
+            @click="handleCopyApiKey"
+            name="copy"
+            :color="palette.brand.graydark"
+            size="24"
+            class="cursor-pointer"
+          />
+          <icon
+            id="generate-apikey"
+            @click="handleGenerateApiKey"
+            name="loading"
+            :color="palette.brand.graydark"
+            size="24"
+            class="cursor-pointer ml-3"
+          />
+        </div>
+      </div>
+
+      <p class="mt-5 text-lg text-gray-800 font-regular">
+        Coloque o script abaixo no seu site para começar a receber feedbacks
+      </p>
+      <content-loader
+        v-if="Global.isLoading || state.isLoading"
+        class="rounded"
+        width="600px"
+        height="50px"
+      />
+      <div
+        v-else
+        class="py-3 pl-5 pr-20 mt-2 rounded bg-brand-gray w-full lg:w-2/3 overflow-x-scroll"
+      >
+        <span v-if="state.hasError">Erro ao carregar o script</span>
+        <pre v-else>
+&lt;script defer async onload="init('{{
+            User.currentUser?.apiKey
+          }}')" src="https://feedbacker.netlify.app/init.js"&gt;&lt;/script&gt;
+        </pre>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { reactive, watch } from 'vue'
 import HeaderLogged from '@/components/HeaderLogged/index.vue'
+import ContentLoader from '@/components/ContentLoader/index.vue'
+import Icon from '@/components/Icon/index.vue'
+import { useStore } from '@/composables/useStore'
+import { useGenerateApiKey } from '@/main/factories/composables/useGenerateApiKeyFactory'
+import { useCopy } from '@/main/factories/composables/useCopy'
+import { StoreModules } from '@/types'
+import { setApiKey } from '@/store/user'
+import palette from '@/assets/palette'
+
+const User = useStore(StoreModules.USER)
+const Global = useStore(StoreModules.GLOBAL)
+const { handleApiKey } = useGenerateApiKey()
+const { handleCopy } = useCopy()
+const state = reactive({
+  hasError: false,
+  isLoading: false,
+})
+
+watch(
+  () => User.currentUser,
+  () => {
+    if (!Global.isLoading && !User.currentUser?.apiKey) {
+      handleError(true)
+    }
+  }
+)
+
+function handleError(error: unknown | boolean) {
+  state.isLoading = true
+  state.hasError = !!error
+}
+
+async function handleGenerateApiKey() {
+  try {
+    state.isLoading = true
+
+    const apiKey = await handleApiKey()
+    setApiKey(apiKey)
+
+    state.isLoading = false
+  } catch (error) {
+    handleError(error)
+  }
+}
+
+async function handleCopyApiKey() {
+  try {
+    handleCopy(User.currentUser?.apiKey)
+  } catch (error) {
+    handleError(error)
+  }
+}
 </script>
