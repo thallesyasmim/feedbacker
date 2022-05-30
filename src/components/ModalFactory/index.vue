@@ -20,8 +20,8 @@
 
 <script lang="ts">
 import { reactive, onMounted, onBeforeUnmount } from 'vue'
-import { useModal, DEFAULT_WIDTH } from '@/composables/useModal'
-import { EmitterSingleton } from '@/utils/helpers/emitter'
+import { DEFAULT_WIDTH } from '@/composables/useModal'
+import { useModal } from '@/main/factories/composables/useModalFactory'
 import type { ModalTogglePayload } from '@/types/events'
 import ModalLogin from '@/components/ModalLogin/index.vue'
 import ModalCreateAccount from '@/components/ModalCreateAccount/index.vue'
@@ -39,7 +39,7 @@ export default {
       props?: any
     }
 
-    const modal = useModal(new EmitterSingleton().getInstance())
+    const modal = useModal()
     const state = reactive<IState>({
       isActive: false,
       component: '',

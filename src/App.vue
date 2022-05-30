@@ -6,17 +6,14 @@
 <script setup lang="ts">
 import { watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { useGetCurrentUser } from '@/composables'
-import { GetCurrentUserUseCaseFactory } from '@/domain/usecases/getCurrentUserUseCase'
+import { useGetCurrentUser } from '@/main/factories/composables/useGetCurrentUserFactory'
 import ModalFactory from '@/components/ModalFactory/index.vue'
 import { IUser } from './types'
 import { setCurrentUser } from './store/user'
 
 const router = useRouter()
 const route = useRoute()
-const { handleGetCurrentUser } = useGetCurrentUser(
-  GetCurrentUserUseCaseFactory.getInstance()
-)
+const { handleGetCurrentUser } = useGetCurrentUser()
 
 watch(
   () => route.path,

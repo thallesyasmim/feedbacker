@@ -68,22 +68,21 @@
 <script setup lang="ts">
 import { reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { useModal, useLogin, useCreateAccount } from '@/composables/index'
+import { useModal } from '@/main/factories/composables/useModalFactory'
+import { useLogin } from '@/main/factories/composables/useLoginFactory'
+import { useCreateAccount } from '@/main/factories/composables/useCreateAccountFactory'
 import { useToast } from 'vue-toastification'
 import { useVuelidate } from '@vuelidate/core'
 import { EmitterSingleton } from '@/utils/helpers/emitter'
 import { ErrorMessage } from '@/types/index'
 import ErrorsMessage from '@/components/ErrorsMessage/index.vue'
 import Icon from '@/components/Icon/index.vue'
-import { AuthUseCaseFactory } from '@/domain/usecases/authUseCase'
 
 const router = useRouter()
 const toast = useToast()
-const modal = useModal(new EmitterSingleton().getInstance())
-const { handleLogin } = useLogin(AuthUseCaseFactory.getInstance())
-const { handleCreateAccount, validationRules } = useCreateAccount(
-  AuthUseCaseFactory.getInstance()
-)
+const modal = useModal()
+const { handleLogin } = useLogin()
+const { handleCreateAccount, validationRules } = useCreateAccount()
 const state = reactive({
   isLoading: false,
   name: '',

@@ -11,13 +11,12 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { useModal } from '@/composables/useModal'
-import { EmitterSingleton } from '@/utils/helpers/emitter'
+import { useModal } from '@/main/factories/composables/useModalFactory'
 import Contact from './Contact.vue'
 import CustomHeader from './CustomHeader.vue'
 
 const router = useRouter()
-const modal = useModal(new EmitterSingleton().getInstance())
+const modal = useModal()
 const currentYear = computed(() => new Date().getFullYear())
 
 onMounted(() => {
