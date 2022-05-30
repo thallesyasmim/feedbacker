@@ -8,7 +8,7 @@ import { watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useGetCurrentUser } from '@/main/factories/composables/useGetCurrentUserFactory'
 import ModalFactory from '@/components/ModalFactory/index.vue'
-import { IUser } from './types'
+import { IUser } from '@/domain/entities/User'
 import { setCurrentUser } from './store/user'
 
 const router = useRouter()

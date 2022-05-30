@@ -1,5 +1,5 @@
 import { GetCurrentUserUseCase } from '@/domain/usecases/getCurrentUserUseCase'
-import { IUser } from '@/types'
+import { IUser } from '@/domain/entities/User'
 
 export function useGetCurrentUser(
   getCurrentUserUseCase: GetCurrentUserUseCase

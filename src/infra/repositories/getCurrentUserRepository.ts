@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios'
-import { IUser } from '@/types'
+import { IUser } from '@/domain/entities/User'
 
 export class GetCurrentUserRepository {
   private getCurrentUserRoute = 'users/me'

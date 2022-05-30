@@ -1,4 +1,4 @@
-import { IUser } from '@/types'
+import { IUser } from '@/domain/entities/User'
 import { reactive } from 'vue'
 
 interface IState {

@@ -1,5 +1,5 @@
 import { GetCurrentUserRepository } from '@/infra/repositories/getCurrentUserRepository'
-import { IUser } from '@/types'
+import { IUser } from '@/domain/entities/User'
 
 export class GetCurrentUserUseCase {
   private getCurrentUserRepository: GetCurrentUserRepository
