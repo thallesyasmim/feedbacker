@@ -17,11 +17,12 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'vue/multi-word-component-names': 'off',
     'prettier/prettier': [
-      'error',
+      'warn',
       {
         endOfLine: 'auto',
       },
     ],
+    'no-useless-constructor': 'off',
   },
   overrides: [
     {
