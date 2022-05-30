@@ -33,7 +33,7 @@ export default {
       default: '1rem',
     },
   },
-  setup(props) {
+  setup(props: any) {
     const computedWidth = computed(
       () =>
         props.width ??
@@ -60,7 +60,7 @@ export default {
   position: relative;
   vertical-align: middle;
   overflow: hidden;
-  backdrop: #f6f7f8;
+  background: #f6f7f8;
 }
 
 .content-loader--fx {
