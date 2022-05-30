@@ -1,8 +1,6 @@
 import {
   TokenGeneratorRepository,
-  TokenGeneratorRepositoryFactory,
   CreateAccountRepository,
-  CreateAccountRepositoryFactory,
   CreateAccountDTO,
   LoginDTO,
 } from '@/infra/repositories'
@@ -33,14 +31,5 @@ export class AuthUseCase {
     })
 
     return account
-  }
-}
-
-export class AuthUseCaseFactory {
-  static getInstance() {
-    return new AuthUseCase(
-      TokenGeneratorRepositoryFactory.getInstance(),
-      CreateAccountRepositoryFactory.getInstance()
-    )
   }
 }

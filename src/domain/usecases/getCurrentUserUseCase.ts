@@ -1,7 +1,4 @@
-import {
-  GetCurrentUserRepository,
-  GetCurrentUserRepositoryFactory,
-} from '@/infra/repositories/getCurrentUserRepository'
+import { GetCurrentUserRepository } from '@/infra/repositories/getCurrentUserRepository'
 import { IUser } from '@/types'
 
 export class GetCurrentUserUseCase {
@@ -13,13 +10,5 @@ export class GetCurrentUserUseCase {
 
   async get(): Promise<IUser> {
     return await this.getCurrentUserRepository.get()
-  }
-}
-
-export class GetCurrentUserUseCaseFactory {
-  static getInstance() {
-    return new GetCurrentUserUseCase(
-      GetCurrentUserRepositoryFactory.getInstance()
-    )
   }
 }
