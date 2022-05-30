@@ -1,4 +1,3 @@
-import httpClient from '@/utils/helpers/httpClient'
 import { AxiosInstance } from 'axios'
 
 export interface CreateAccountDTO {
@@ -8,10 +7,9 @@ export interface CreateAccountDTO {
 }
 
 export class CreateAccountRepository {
-  private httpClient: AxiosInstance
   private createAccountRoute = 'auth/register'
 
-  constructor(httpClient: AxiosInstance) {
+  constructor(private httpClient: AxiosInstance) {
     this.httpClient = httpClient
   }
 
@@ -23,11 +21,5 @@ export class CreateAccountRepository {
     })
 
     return response?.data ?? null
-  }
-}
-
-export class CreateAccountRepositoryFactory {
-  static getInstance() {
-    return new CreateAccountRepository(httpClient)
   }
 }

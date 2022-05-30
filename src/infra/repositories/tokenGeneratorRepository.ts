@@ -1,13 +1,11 @@
-import httpClient from '@/utils/helpers/httpClient'
 import { AxiosInstance } from 'axios'
 
 export type LoginDTO = string | null
 
 export class TokenGeneratorRepository {
-  private httpClient: AxiosInstance
   private tokenGeneratorRoute = '/auth/login'
 
-  constructor(httpClient: AxiosInstance) {
+  constructor(private httpClient: AxiosInstance) {
     this.httpClient = httpClient
   }
 
@@ -18,11 +16,5 @@ export class TokenGeneratorRepository {
     })
 
     return response?.data?.token ?? null
-  }
-}
-
-export class TokenGeneratorRepositoryFactory {
-  static getInstance() {
-    return new TokenGeneratorRepository(httpClient)
   }
 }
