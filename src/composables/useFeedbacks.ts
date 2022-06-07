@@ -15,7 +15,13 @@ export function useFeedbacks(feedbacksUseCase: FeedbacksUseCase) {
   async function handleFeedbacks(
     queryParams: IGetAllFeedbacksRepositoryProps
   ): Promise<IHandleFeedbacks> {
-    const feedbacks = await feedbacksUseCase.getAll(queryParams)
+    const feedbacks = await feedbacksUseCase.getAll({
+      ...queryParams,
+      type:
+        queryParams.type?.toLocaleLowerCase() === 'all'
+          ? undefined
+          : queryParams.type,
+    })
     return feedbacks
   }
 
