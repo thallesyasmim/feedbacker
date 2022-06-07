@@ -1,8 +1,20 @@
 import { FeedbacksUseCase } from '@/domain/usecases/feedbacksUseCase'
 import { IGetAllFeedbacksRepositoryProps } from '@/infra/repositories'
+import { Feedback } from '@/domain/entities/Feedback'
+
+interface IHandleFeedbacks {
+  results: Feedback[]
+  pagination: {
+    offset: number
+    limit: number
+    total: number
+  }
+}
 
 export function useFeedbacks(feedbacksUseCase: FeedbacksUseCase) {
-  async function handleFeedbacks(queryParams: IGetAllFeedbacksRepositoryProps) {
+  async function handleFeedbacks(
+    queryParams: IGetAllFeedbacksRepositoryProps
+  ): Promise<IHandleFeedbacks> {
     const feedbacks = await feedbacksUseCase.getAll(queryParams)
     return feedbacks
   }
