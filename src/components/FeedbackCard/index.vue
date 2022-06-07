@@ -50,7 +50,7 @@
       </div>
 
       <div class="flex justify-end mt-8" v-if="!state.isOpen">
-        <icon name="chevron-down" size="24" :color="brandColors.graydark" />
+        <icon name="chevron-down" size="24" :color="palette.brand.graydark" />
       </div>
     </div>
   </div>
@@ -58,11 +58,11 @@
 
 <script setup lang="ts">
 import { defineProps, reactive } from 'vue'
-import Badge from './Badge'
-import Icon from '../Icon'
+import { Feedback } from '@/domain/entities/Feedback'
 import { getDiffTimeBetweenCurrentDate, wait } from '@/utils'
 import palette from '@/assets/palette'
-import { Feedback } from '@/domain/entities/Feedback'
+import Badge from './Badge'
+import Icon from '../Icon'
 
 interface IProps {
   isOpened: boolean
