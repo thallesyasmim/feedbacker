@@ -1,67 +1,45 @@
 {
-  "name": "feedbacker-dashboard",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint",
-    "prepare": "husky install",
-    "commit": "git-cz"
+  "name": "feedbacker",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "license": "GPL-3.0-or-later",
+  "keywords": [
+    "vuejs",
+    "docker",
+    "dockerfile",
+    "docker-compose",
+    "jest",
+    "tdd",
+    "ddd",
+    "design-patterns",
+    "clean-architecture",
+    "clean-code",
+    "husky",
+    "lint-staged",
+    "composition-api"
+  ],
+  "homepage": "https://github.com/thallesyasmim/feedbacker#readme",
+  "author": {
+    "name": "Thalles Gabriel",
+    "email": "thallesgabriel1307@gmail.com",
+    "url": "https://bit.ly/thalles-gabriel"
   },
-  "dependencies": {
-    "@vuelidate/core": "^2.0.0-alpha.41",
-    "@vuelidate/validators": "^2.0.0-alpha.29",
-    "animate.css": "^4.1.1",
-    "axios": "^0.27.2",
-    "core-js": "^3.8.3",
-    "pico-emitter": "^1.1.0",
-    "vue": "^3.2.13",
-    "vue-router": "^4.0.3",
-    "vue-toastification": "^2.0.0-rc.5"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thallesyasmim/feedbacker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thallesyasmim/feedbacker/issues",
+    "email": "thallesgabriel1307@gmail.com"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "lerna run --parallel start"
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.2.3",
-    "@commitlint/config-conventional": "^16.2.1",
-    "@types/jest": "^27.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
-    "@vue/cli-plugin-babel": "~5.0.0",
-    "@vue/cli-plugin-e2e-cypress": "~5.0.0",
-    "@vue/cli-plugin-eslint": "~5.0.0",
-    "@vue/cli-plugin-router": "~5.0.0",
-    "@vue/cli-plugin-typescript": "~5.0.0",
-    "@vue/cli-plugin-unit-jest": "~5.0.0",
-    "@vue/cli-service": "~5.0.0",
-    "@vue/eslint-config-standard": "^6.1.0",
-    "@vue/eslint-config-typescript": "^9.1.0",
-    "@vue/test-utils": "^2.0.0-0",
-    "@vue/vue3-jest": "^27.0.0-alpha.1",
-    "autoprefixer": "^10.4.4",
-    "babel-jest": "^27.0.6",
-    "cypress": "^8.3.0",
-    "cz-conventional-changelog": "3.3.0",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-vue": "^8.0.3",
-    "husky": "^7.0.0",
-    "jest": "^27.0.5",
-    "lint-staged": "^11.1.2",
-    "postcss": "^8.4.12",
-    "prettier": "^2.6.2",
-    "tailwindcss": "^3.0.24",
-    "ts-jest": "^27.0.4",
-    "typescript": "~4.5.5"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "lerna": "^5.1.4"
   }
 }
