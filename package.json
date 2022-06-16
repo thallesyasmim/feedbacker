@@ -1,0 +1,42 @@
+{
+  "name": "feedbacker",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "license": "GPL-3.0-or-later",
+  "keywords": [
+    "vuejs",
+    "docker",
+    "dockerfile",
+    "docker-compose",
+    "jest",
+    "tdd",
+    "ddd",
+    "design-patterns",
+    "clean-architecture",
+    "clean-code",
+    "husky",
+    "lint-staged",
+    "composition-api"
+  ],
+  "homepage": "https://github.com/thallesyasmim/feedbacker#readme",
+  "author": {
+    "name": "Thalles Gabriel",
+    "email": "thallesgabriel1307@gmail.com",
+    "url": "https://bit.ly/thalles-gabriel"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thallesyasmim/feedbacker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thallesyasmim/feedbacker/issues",
+    "email": "thallesgabriel1307@gmail.com"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "lerna": "^5.1.4"
+  }
+}
