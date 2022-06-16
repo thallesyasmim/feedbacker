@@ -33,8 +33,11 @@
     "url": "https://github.com/thallesyasmim/feedbacker/issues",
     "email": "thallesgabriel1307@gmail.com"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "lerna run --parallel start"
   },
   "devDependencies": {
     "lerna": "^5.1.4"
