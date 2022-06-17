@@ -17,7 +17,8 @@
     "clean-code",
     "husky",
     "lint-staged",
-    "composition-api"
+    "composition-api",
+    "monorepo"
   ],
   "homepage": "https://github.com/thallesyasmim/feedbacker#readme",
   "author": {
